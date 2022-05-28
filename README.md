@@ -2,6 +2,16 @@
 
 - Code Source (modified though): https://www.npmjs.com/package/api-mount-client
 
+Inspiration: https://stackoverflow.com/questions/14951251/how-to-call-node-js-server-side-method-from-javascript
+
+```bash
+# for client
+npm i api-mount-client
+
+# for server
+npm i api-mount-server
+```
+
 ## My own ideology to achieve this using proxy
 
 FYI: proxy works in browser and nodejs
