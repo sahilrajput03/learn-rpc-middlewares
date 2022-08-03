@@ -1,9 +1,9 @@
 const express = require('express')
-// for development only
+
+const createRpcPostRoute = require('rpc-middleware')
+// For development only
 // const createRpcPostRoute = require('../../rpc-middleware-npm/index.js')
 
-// FROM NPM
-const createRpcPostRoute = require('rpc-middleware')
 const fns = require('./server-functions')
 
 const PORT = 8080
