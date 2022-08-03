@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min.js" integrity="sha512-UOoJElONeUNzQbbKQbjldDf9MwOHqxNz49NNJJ1d90yp+X9edsHyJoAs6O4K19CZGaIdjI5ohK+O2y5lBTW6uQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>RPC Demo</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	</head>
 	<body>
 		<h1>Welcome to RPC Demo</h1>
+		<div>On expressjs/nodejs server, we have a file <i>server-functions.js</i> which looks like this -</div>
+
+		<pre class="pre-code">
+			<code >
+
+module.exports.test = () => 'works!'
+
+// string as parameter
+module.exports.yoy = (message) => {
+	return message + ' from server..'
+}
+
+// object as parameter
+module.exports.cat = (body) => {
+	const {say} = body
+	return 'Cat says:' + say + '!!'
+}
+
+// multiple parameter
+module.exports.love = (name1, name2) => {
+	return `God loves: ${name1} and ${name2}`
+}
+			</code
+			>
+		</pre>
+
 		<div class="desc">Use below buttons to call appropriate function on server:</div>
 
 		<button onclick="btn1()">rpc.test()</button>
@@ -153,6 +179,17 @@
 			.footer {
 				margin-top: 30px;
 				font-style: italic;
+			}
+			.pre-code {
+				width: 450px;
+				border: 2px solid darkgray;
+				border-radius: 15px;
+				padding: 0px 10px;
+				margin: 5px 0px;
+				margin-bottom: 20px;
+			}
+			.pre-code > code {
+				color: black;
 			}
 		</style>
 	</body>
