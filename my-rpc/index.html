@@ -37,7 +37,7 @@
 			}
 			const rpc = new Proxy(target, handler)
 
-			// STEP2: Calling server function with our rpc client
+			// STEP2: Attach click handlers
 			async function btn1() {
 				const res = await rpc.test()
 				debug('res.data: ' + res.data)
