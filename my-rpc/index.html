@@ -29,6 +29,15 @@ module.exports.cat = (body) => {
 module.exports.love = (name1, name2) => {
 	return `God loves: ${name1} and ${name2}`
 }
+
+// error throwing, send status: 400 (bad request) with body as `err` object
+module.exports.rain = (name1, name2) => {
+	const messg = `${name1} does not like ${name2}`
+	// let err = new Error(messg) // equivalent to {name: 'Error', message: 'myMessage}
+	let err = {name: 'RAIN IS NOT ALLOWED ON SUNNY DAY', message: 'THE BEST THING ONE CAN DO WHEN IT’S RAINING IS TO LET IT RAIN.'}
+	throw err
+}
+
 			</code
 			>
 		</pre>
@@ -40,6 +49,7 @@ module.exports.love = (name1, name2) => {
 		<button onclick="btn3()">rpc.cat({say: "meoww"})</button>
 		<button onclick="btn4()">rpc.love("donald", "pikachu")</button>
 		<button onclick="btn5()">rpc.someNonExistingFunction("pokemons")</button>
+		<button onclick="btn6()">rpc.rain("Charlizard", "Nobita")</button>
 
 		<button class="source-code" onclick="viewSource()">Toggle source code view of this PAGE</button>
 
@@ -74,7 +84,18 @@ module.exports.love = (name1, name2) => {
 				} catch (error) {
 					const errStatus = 'error.response.status: ' + error.response.status
 					const respData = 'error.response.data.error: ' + error.response.data.error
-					debug(errStatus + ', ' + respData)
+					debug([errStatus, respData].join('\n'))
+				}
+			}
+			async function btn6() {
+				try {
+					const res = await rpc.rain('Charlizard', 'Nobita')
+					debug(res)
+				} catch (error) {
+					const errStatus = 'error.response.status: ' + error.response.status
+					const errName = 'error.response.data.name: ' + error.response.data.name
+					const errMessage = 'error.response.data.message: ' + error.response.data.message
+					debug([errStatus, errName, errMessage].join('\n'))
 				}
 			}
 
