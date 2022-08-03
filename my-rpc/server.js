@@ -1,7 +1,7 @@
 const express = require('express')
 
 const createRpcPostRoute = require('rpc-middleware')
-// For development only
+// For development, use below instead
 // const createRpcPostRoute = require('../../rpc-middleware-npm/index.js')
 
 const fns = require('./server-functions')
