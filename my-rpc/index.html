@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>RPC Demo</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	</head>
+	<body>
+		<h1>Welcome to RPC Demo</h1>
+		<div class="desc">Use each of button to call appropriate function on server:</div>
+
+		<button onclick="btn1()">rpc.test()</button>
+		<button onclick="btn2()">rpc.yoy("God loves all")</button>
+		<button onclick="btn3()">rpc.cat({say: "cow"})</button>
+		<button onclick="btn4()">rpc.love('donald', 'pikachu')</button>
+		<button onclick="btn5()">rpc.someNonExistingFunction('pokemons')</button>
+
+		<button onclick="viewSource()">Toggle source code view of this PAGE</button>
+
+		<script>
+			const log = console.log
+
+			// STEP1: Setup RPC client
+			const target = {}
+			const handler = {
+				get(target, prop) {
+					return async (...functionParams) => {
+						// log(`functionName?:${prop}, functionParams:${functionParams}`)
+						// Send `functionParams` as body for the request
+						return await axios.post(`/rpc/${prop}`, functionParams)
+					}
+				},
+			}
+			const rpc = new Proxy(target, handler)
+
+			// STEP2: Calling server function with our rpc client
+			async function btn1() {
+				const res = await rpc.test()
+				debug('res.data: ' + res.data)
+			}
+			async function btn2() {
+				const res = await rpc.yoy('God loves all')
+				debug('res.data: ' + res.data)
+			}
+			async function btn3() {
+				const res = await rpc.cat({say: 'meoww'})
+				debug('res.data: ' + res.data)
+			}
+			async function btn4() {
+				const res = await rpc.love('donald', 'pikachu')
+				debug('res.data: ' + res.data)
+			}
+			async function btn5() {
+				try {
+					const res = await rpc.someNonExistingFunction('pokemons')
+				} catch (error) {
+					const errStatus = 'error.response.status: ' + error.response.status
+					const respData = 'error.response.data.error: ' + error.response.data.error
+					debug(errStatus + ', ' + respData)
+				}
+			}
+
+			// Utility function
+			function debug(input) {
+				const isLocalhost = window.location.hostname === 'localhost'
+				if (isLocalhost) {
+					log(input)
+				} else {
+					alert(input)
+				}
+			}
+
+			let isCodeRendered = false
+			let isShown = false
+			function viewSource() {
+				if (isCodeRendered) {
+					const el = document.querySelector('textarea')
+					if (isShown) {
+						el.style.display = 'none'
+						isShown = false
+					} else {
+						el.style.display = 'block'
+						isShown = true
+					}
+				} else {
+					const el = document.createElement('textarea')
+					el.innerHTML = document.body.innerHTML
+					document.body.append(el)
+					isCodeRendered = true
+					isShown = true
+				}
+			}
+		</script>
+		<style>
+			button {
+				border: none;
+				background-color: deepskyblue;
+				border-radius: 15px;
+				padding: 20px 50px;
+				color: white;
+				font-weight: bold;
+			}
+			body {
+				background-color: grey;
+				color: white;
+			}
+			textarea {
+				margin-top: 20px;
+				height: 75vh;
+				width: 90vw;
+				border-radius: 15px;
+			}
+			.desc {
+				margin-bottom: 20px;
+			}
+		</style>
+	</body>
+</html>
