@@ -6,7 +6,7 @@ const createRpcPostRoute = require('rpc-middleware')
 
 const fns = require('./server-functions')
 
-const PORT = 8080
+const PORT = process.env.PORT || 8080 // Using environment variable PORT for heroku environment
 const app = express()
 app.use(express.json())
 
