@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<h1>Welcome to RPC Demo</h1>
-		<div class="desc">Use each of button to call appropriate function on server:</div>
+		<div class="desc">Use below buttons to call appropriate function on server:</div>
 
 		<button onclick="btn1()">rpc.test()</button>
 		<button onclick="btn2()">rpc.yoy("God loves all")</button>
@@ -17,7 +17,7 @@
 		<button onclick="btn4()">rpc.love('donald', 'pikachu')</button>
 		<button onclick="btn5()">rpc.someNonExistingFunction('pokemons')</button>
 
-		<button onclick="viewSource()">Toggle source code view of this PAGE</button>
+		<button class="source-code" onclick="viewSource()">Toggle source code view of this PAGE</button>
 
 		<div class="footer">Get complete Code on Github: <a target="__blank" href="https://github.com/sahilrajput03/learn-rpc-middlewares/tree/main/my-rpc">Click here</a></div>
 
@@ -96,6 +96,9 @@
 			}
 		</script>
 		<style>
+			h1 {
+				text-decoration: underline;
+			}
 			button {
 				border: none;
 				background-color: deepskyblue;
@@ -103,6 +106,17 @@
 				padding: 20px 50px;
 				color: white;
 				font-weight: bold;
+				font-size: 1rem;
+				margin: 20px;
+			}
+			.source-code {
+				background-color: lightcyan;
+				color: deepskyblue;
+				font-style: italic;
+			}
+			button:active {
+				background-color: black;
+				color: yellow;
 			}
 			body {
 				background-color: grey;
@@ -116,6 +130,8 @@
 			}
 			.desc {
 				margin-bottom: 20px;
+				font-size: 1.4rem;
+				font-weight: bold;
 			}
 			.footer {
 				margin-top: 30px;
