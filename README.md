@@ -27,11 +27,11 @@ const handler3 = {
 	},
 }
 
-const proxy3 = new Proxy(target, handler3)
+const rpc = new Proxy(target, handler3)
 
-proxy3.a()
+rpc.a()
 // VM583:5 fun?: a
 
-proxy3.b()
+rpc.b()
 // VM583:5 fun?: b
 ```
