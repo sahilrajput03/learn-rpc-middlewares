@@ -5,6 +5,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<title>RPC Demo</title>
 	</head>
 	<body>
@@ -76,19 +77,19 @@ module.exports.love = (name1, name2) => {
 			// STEP2: Attach click handlers
 			async function btn1() {
 				const res = await rpc.test()
-				debug('res.data: ' + res.data)
+				debug(res.data)
 			}
 			async function btn2() {
 				const res = await rpc.yoy('God loves all')
-				debug('res.data: ' + res.data)
+				debug(res.data)
 			}
 			async function btn3() {
 				const res = await rpc.cat({say: 'meoww'})
-				debug('res.data: ' + res.data)
+				debug(res.data)
 			}
 			async function btn4() {
 				const res = await rpc.love('donald', 'pikachu')
-				debug('res.data: ' + res.data)
+				debug(res.data)
 			}
 			async function btn5() {
 				try {
