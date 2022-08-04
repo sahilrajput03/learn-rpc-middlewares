@@ -6,6 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 		<title>RPC Demo</title>
 	</head>
 	<body>
@@ -29,6 +30,13 @@
 		<button onclick="btn4()">rpc.love("donald", "pikachu")</button>
 		<button onclick="btn5()">rpc.rain("Charlizard", "Nobita")</button>
 		<button onclick="btn6()">rpc.someNonExistingFunction("pokemons")</button>
+
+		<p>In frontend we use our rpc like that:</p>
+
+		<div class="frontend-gist-file">
+			<!-- To fix 850px -->
+			<script src="https://gist.github.com/sahilrajput03/a08e4347f7acccc38ee90770bc0b16a7.js"></script>
+		</div>
 
 		<button class="source-code" onclick="viewSource()">Toggle source code view of this PAGE</button>
 
@@ -88,6 +96,7 @@
 
 			let isCodeRendered = false
 			let isShown = false
+			const scroll = () => (document.documentElement.scrollTop += 600)
 			function viewSource() {
 				if (isCodeRendered) {
 					const el = document.querySelector('textarea')
@@ -97,6 +106,8 @@
 					} else {
 						el.style.display = 'block'
 						isShown = true
+
+						scroll()
 					}
 				} else {
 					const el = document.createElement('textarea')
@@ -104,6 +115,8 @@
 					document.body.append(el)
 					isCodeRendered = true
 					isShown = true
+
+					scroll()
 				}
 			}
 
@@ -181,6 +194,9 @@
 			/* Gist Related */
 			.gist-file {
 				width: 600px;
+			}
+			.frontend-gist-file .gist-file {
+				width: 850px !important;
 			}
 			.gist {
 				display: flex;
