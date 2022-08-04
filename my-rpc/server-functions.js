@@ -16,10 +16,10 @@ module.exports.love = (name1, name2) => {
 	return `God loves: ${name1} and ${name2}`
 }
 
-// error throwing, send status: 400 (bad request) with body as `err` object
+// on error rpc send status: 400 (BAD REQUEST) and body as `err`
 module.exports.rain = (name1, name2) => {
 	const messg = `${name1} does not like ${name2}`
 	// let err = new Error(messg) // equivalent to {name: 'Error', message: 'myMessage}
-	let err = {name: 'RAIN IS NOT ALLOWED ON SUNNY DAY', message: 'THE BEST THING ONE CAN DO WHEN IT’S RAINING IS TO LET IT RAIN.'}
+	let err = {name: 'RAIN AWAY', message: 'SUN DOWN'}
 	throw err
 }

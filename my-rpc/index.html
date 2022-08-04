@@ -10,11 +10,11 @@
 	</head>
 	<body>
 		<h1>Welcome to RPC Demo</h1>
-		<div>On expressjs/nodejs server, we have a file <i>server-functions.js</i> which looks like this -</div>
+		<div>
+			On expressjs/nodejs server, we have a file <a target="_blank" href="https://github.com/sahilrajput03/learn-rpc-middlewares/blob/main/my-rpc/server-functions.js"><i>server-functions.js</i></a> which looks like this -
+		</div>
 
 		<pre class="pre-code">
-			<code >
-
 module.exports.test = () => 'works!'
 
 module.exports.yoy = (message) => {
@@ -30,17 +30,13 @@ module.exports.love = (name1, name2) => {
 	return `God loves: ${name1} and ${name2}`
 }
 
-// error throwing, send status: 400 (bad request) with body as `err` object
+// on error rpc send status: 400 (BAD REQUEST) and body as `err`
 module.exports.rain = (name1, name2) => {
 	const messg = `${name1} does not like ${name2}`
-	// let err = new Error(messg) // equivalent to {name: 'Error', message: 'myMessage}
-	let err = {name: 'RAIN IS NOT ALLOWED ON SUNNY DAY', message: 'THE BEST THING ONE CAN DO WHEN IT’S RAINING IS TO LET IT RAIN.'}
+	let err = {name: 'RAIN AWAY', message: 'SUN DOWN'}
 	throw err
-}
-
-			</code
-			>
-		</pre>
+}	</pre
+		>
 
 		<div class="desc">Use below buttons to call appropriate function on server:</div>
 
@@ -200,12 +196,13 @@ module.exports.rain = (name1, name2) => {
 				font-style: italic;
 			}
 			.pre-code {
-				width: 1100px;
 				border: 2px solid darkgray;
 				border-radius: 15px;
 				padding: 0px 10px;
 				margin: 5px 0px;
 				margin-bottom: 20px;
+				/* This is magical */
+				width: fit-content;
 			}
 			.pre-code > code {
 				color: black;
