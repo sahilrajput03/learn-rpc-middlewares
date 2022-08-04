@@ -79,25 +79,24 @@
 
 			// STEP2: Attach click handlers
 			async function btn1() {
-				const res = await rpc.test()
-				debug(res.data)
+				const data = await rpc.test()
+				debug(data)
 			}
 			async function btn2() {
-				const res = await rpc.yoy('God loves all')
-				debug(res.data)
+				const data = await rpc.yoy('God loves all')
+				debug(data)
 			}
 			async function btn3() {
-				const res = await rpc.cat({say: 'meoww'})
-				debug(res.data)
+				const data = await rpc.cat({say: 'meoww'})
+				debug(data)
 			}
 			async function btn4() {
-				const res = await rpc.love('donald', 'pikachu')
-				debug(res.data)
+				const data = await rpc.love('donald', 'pikachu')
+				debug(data)
 			}
 			async function btn5() {
 				try {
 					const res = await rpc.rain('Charlizard', 'Nobita')
-					debug(res)
 				} catch (error) {
 					const {name, message, status} = error
 					debug('CAUGHT ERROR: \n' + ['name: ' + name, 'message: ' + message, 'status: ' + status].join('\n\n'))
@@ -162,9 +161,12 @@
 							if (!url.endsWith('/')) {
 								url = url + '/'
 							}
-							return await axios.post(`${url}${prop}`, functionParams).catch((e) => {
-								throw {...e.response.data, status: e.response.status}
-							})
+							return await axios
+								.post(`${url}${prop}`, functionParams)
+								.then((response) => response.data)
+								.catch((e) => {
+									throw {...e.response.data, status: e.response.status}
+								})
 						}
 					},
 				}
