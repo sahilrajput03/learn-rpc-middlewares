@@ -9,8 +9,12 @@
 		<title>RPC Demo</title>
 	</head>
 	<body>
-		<h1>Welcome to RPC Demo</h1>
-		<div class="footer">Get complete project code on github: <a target="__blank" href="https://github.com/sahilrajput03/learn-rpc-middlewares/tree/main/my-rpc">Click here</a></div>
+		<div style="display: flex">
+			<h1>Welcome to RPC Demo</h1>
+			<div style="margin-left: 20px" class="footer">Project code: <a target="__blank" href="https://github.com/sahilrajput03/learn-rpc-middlewares/tree/main/my-rpc">Github</a></div>
+		</div>
+
+		Npm Library: <a href="https://www.npmjs.com/package/rpc-middleware" target="_blank" rel="noopener noreferrer"><code>rpc-middleware</code></a>
 
 		<p>
 			On expressjs/nodejs server, we have a file <a target="_blank" href="https://github.com/sahilrajput03/learn-rpc-middlewares/blob/main/my-rpc/server-functions.js"><i>server-functions.js</i></a> and <a target="_blank" href="https://github.com/sahilrajput03/learn-rpc-middlewares/blob/main/my-rpc/server.js"><i>server.js</i></a> which looks like this -
@@ -23,8 +27,8 @@
 		<button onclick="btn2()">rpc.yoy("God loves all")</button>
 		<button onclick="btn3()">rpc.cat({say: "meoww"})</button>
 		<button onclick="btn4()">rpc.love("donald", "pikachu")</button>
-		<button onclick="btn5()">rpc.someNonExistingFunction("pokemons")</button>
-		<button onclick="btn6()">rpc.rain("Charlizard", "Nobita")</button>
+		<button onclick="btn5()">rpc.rain("Charlizard", "Nobita")</button>
+		<button onclick="btn6()">rpc.someNonExistingFunction("pokemons")</button>
 
 		<button class="source-code" onclick="viewSource()">Toggle source code view of this PAGE</button>
 
@@ -53,15 +57,6 @@
 			}
 			async function btn5() {
 				try {
-					const res = await rpc.someNonExistingFunction('pokemons')
-				} catch (error) {
-					const errStatus = 'error.response.status: ' + error.response.status
-					const respData = 'error.response.data.error: ' + error.response.data.error
-					debug([errStatus, respData].join('\n'))
-				}
-			}
-			async function btn6() {
-				try {
 					const res = await rpc.rain('Charlizard', 'Nobita')
 					debug(res)
 				} catch (error) {
@@ -69,6 +64,15 @@
 					const errName = 'error.response.data.name: ' + error.response.data.name
 					const errMessage = 'error.response.data.message: ' + error.response.data.message
 					debug([errStatus, errName, errMessage].join('\n'))
+				}
+			}
+			async function btn6() {
+				try {
+					const res = await rpc.someNonExistingFunction('pokemons')
+				} catch (error) {
+					const errStatus = 'error.response.status: ' + error.response.status
+					const respData = 'error.response.data.error: ' + error.response.data.error
+					debug([errStatus, respData].join('\n'))
 				}
 			}
 
@@ -169,7 +173,6 @@
 				font-weight: bold;
 			}
 			.footer {
-				margin-top: 30px;
 				font-style: italic;
 			}
 			a {
