@@ -9,6 +9,9 @@ module.exports.yoy = (message) => {
 module.exports.cat = (body) => {
 	const {say} = body
 	return 'Cat says:' + say + '!!'
+
+	// You can send custom HTTP request status code like that
+	// return {data: 'Cat says:' + say + '!!', status: 205}
 }
 
 // multiple parameter
