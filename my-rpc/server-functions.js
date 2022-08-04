@@ -25,7 +25,7 @@ module.exports.rain = (name1, name2) => {
 	let err = {name: 'RAIN AWAY', message: 'SUN DOWN'}
 
 	// Errors constructed with Error class also supported
-	// let err = new Error(messg) // equivalent to {name: 'Error', message: 'myMessage}
+	// let err = new Error(messg) // equivalent to {name: 'Error', message: 'myMessage, stack: '...long..non-serilizable..error....'}
 
 	// We can send custom HTTP status code like that
 	// let err = {name: 'RAIN AWAY', message: 'SUN DOWN', status: 401}
