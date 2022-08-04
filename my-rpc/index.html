@@ -70,26 +70,23 @@
 					const res = await rpc.rain('Charlizard', 'Nobita')
 					debug(res)
 				} catch (error) {
-					const errStatus = 'error.response.status: ' + error.response.status
-					const errName = 'error.response.data.name: ' + error.response.data.name
-					const errMessage = 'error.response.data.message: ' + error.response.data.message
-					debug([errStatus, errName, errMessage].join('\n'))
+					const {name, message, status} = error
+					debug('CAUGHT ERROR: \n' + ['name: ' + name, 'message: ' + message, 'status: ' + status].join('\n\n'))
 				}
 			}
 			async function btn6() {
 				try {
 					const res = await rpc.someNonExistingFunction('pokemons')
 				} catch (error) {
-					const errStatus = 'error.response.status: ' + error.response.status
-					const respData = 'error.response.data.error: ' + error.response.data.error
-					debug([errStatus, respData].join('\n'))
+					const {name, message, status} = error
+					debug('CAUGHT ERROR: \n' + ['name: ' + name, 'message: ' + message, 'status: ' + status].join('\n\n'))
 				}
 			}
 
 			// Utility function
 			function debug(input) {
 				const isLocalhost = window.location.hostname === 'localhost'
-				if (isLocalhost) {
+				if (!isLocalhost) {
 					log(input)
 				} else {
 					alert(input)
@@ -134,7 +131,9 @@
 							if (!url.endsWith('/')) {
 								url = url + '/'
 							}
-							return await axios.post(`${url}${prop}`, functionParams)
+							return await axios.post(`${url}${prop}`, functionParams).catch((e) => {
+								throw {name: e.response.data.name, message: e.response.data.message, status: e.response.status}
+							})
 						}
 					},
 				}
