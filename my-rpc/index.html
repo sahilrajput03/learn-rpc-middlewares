@@ -86,7 +86,9 @@
 			// Utility function
 			function debug(input) {
 				const isLocalhost = window.location.hostname === 'localhost'
-				if (!isLocalhost) {
+				if (isLocalhost) {
+					// Temporarily to deubg alert messages for production (comment when not needed)
+					alert(input)
 					log(input)
 				} else {
 					alert(input)
