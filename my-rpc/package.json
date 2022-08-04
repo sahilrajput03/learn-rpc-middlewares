@@ -13,6 +13,6 @@
 	"dependencies": {
 		"express": "^4.18.1",
 		"nodemon": "^2.0.19",
-		"rpc-middleware": "^1.0.16"
+		"rpc-middleware": "^1.0.18"
 	}
 }
