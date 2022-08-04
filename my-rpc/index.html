@@ -10,33 +10,12 @@
 	</head>
 	<body>
 		<h1>Welcome to RPC Demo</h1>
-		<div>
-			On expressjs/nodejs server, we have a file <a target="_blank" href="https://github.com/sahilrajput03/learn-rpc-middlewares/blob/main/my-rpc/server-functions.js"><i>server-functions.js</i></a> which looks like this -
-		</div>
+		<div class="footer">Get complete project code on github: <a target="__blank" href="https://github.com/sahilrajput03/learn-rpc-middlewares/tree/main/my-rpc">Click here</a></div>
 
-		<pre class="pre-code">
-module.exports.test = () => 'works!'
-
-module.exports.yoy = (message) => {
-	return message + ' from server..'
-}
-
-module.exports.cat = (body) => {
-	const {say} = body
-	return 'Cat says:' + say + '!!'
-}
-
-module.exports.love = (name1, name2) => {
-	return `God loves: ${name1} and ${name2}`
-}
-
-// on error rpc send status: 400 (BAD REQUEST) and body as `err`
-module.exports.rain = (name1, name2) => {
-	const messg = `${name1} does not like ${name2}`
-	let err = {name: 'RAIN AWAY', message: 'SUN DOWN'}
-	throw err
-}	</pre
-		>
+		<p>
+			On expressjs/nodejs server, we have a file <a target="_blank" href="https://github.com/sahilrajput03/learn-rpc-middlewares/blob/main/my-rpc/server-functions.js"><i>server-functions.js</i></a> and <a target="_blank" href="https://github.com/sahilrajput03/learn-rpc-middlewares/blob/main/my-rpc/server.js"><i>server.js</i></a> which looks like this -
+		</p>
+		<script src="https://gist.github.com/sahilrajput03/989ecbf100eca5714ff9ccb01dd7c7e4.js"></script>
 
 		<div class="desc">Use below buttons to call appropriate function on server:</div>
 
@@ -48,8 +27,6 @@ module.exports.rain = (name1, name2) => {
 		<button onclick="btn6()">rpc.rain("Charlizard", "Nobita")</button>
 
 		<button class="source-code" onclick="viewSource()">Toggle source code view of this PAGE</button>
-
-		<div class="footer">Get complete Code on Github: <a target="__blank" href="https://github.com/sahilrajput03/learn-rpc-middlewares/tree/main/my-rpc">Click here</a></div>
 
 		<script>
 			const log = console.log
@@ -145,6 +122,22 @@ module.exports.rain = (name1, name2) => {
 
 				return new Proxy(target, handler)
 			}
+
+			// Make iframe fit to width and height
+			function resizeIFrameToFitContent(iFrame) {
+				iFrame.width = iFrame.contentWindow.document.body.scrollWidth
+				iFrame.height = iFrame.contentWindow.document.body.scrollHeight
+			}
+			// window.addEventListener('DOMContentLoaded', function (e) {
+			// 	var iFrame = document.getElementById('iFrame1')
+			// 	resizeIFrameToFitContent(iFrame)
+
+			// 	// or, to resize all iframes:
+			// 	var iframes = document.querySelectorAll('iframe')
+			// 	for (var i = 0; i < iframes.length; i++) {
+			// 		resizeIFrameToFitContent(iframes[i])
+			// 	}
+			// })
 		</script>
 		<style>
 			h1 {
@@ -195,17 +188,27 @@ module.exports.rain = (name1, name2) => {
 				margin-top: 30px;
 				font-style: italic;
 			}
-			.pre-code {
-				border: 2px solid darkgray;
-				border-radius: 15px;
-				padding: 0px 10px;
-				margin: 5px 0px;
-				margin-bottom: 20px;
-				/* This is magical */
-				width: fit-content;
+			a {
+				color: skyblue;
 			}
-			.pre-code > code {
-				color: black;
+			/* Gist Related */
+			.gist-file {
+				width: 600px;
+			}
+			.gist {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			/* For mobile */
+			@media (min-width: 1280px) {
+				.gist {
+					flex-direction: row;
+				}
+				.gist > div + div {
+					margin-left: 30px;
+				}
 			}
 		</style>
 	</body>

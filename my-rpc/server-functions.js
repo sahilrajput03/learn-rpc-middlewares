@@ -23,3 +23,6 @@ module.exports.rain = (name1, name2) => {
 	let err = {name: 'RAIN AWAY', message: 'SUN DOWN'}
 	throw err
 }
+
+// On calling any someNonExistingFunction rpc send status: 404 (NOT FOUND)
+// and sends message about using using non-existing function
