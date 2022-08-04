@@ -163,7 +163,7 @@
 								url = url + '/'
 							}
 							return await axios.post(`${url}${prop}`, functionParams).catch((e) => {
-								throw {name: e.response.data.name, message: e.response.data.message, status: e.response.status}
+								throw {...e.response.data, status: e.response.status}
 							})
 						}
 					},
