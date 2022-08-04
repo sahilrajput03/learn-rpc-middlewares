@@ -19,8 +19,13 @@ module.exports.love = (name1, name2) => {
 // on error rpc send status: 400 (BAD REQUEST) and body as `err`
 module.exports.rain = (name1, name2) => {
 	const messg = `${name1} does not like ${name2}`
-	// let err = new Error(messg) // equivalent to {name: 'Error', message: 'myMessage}
 	let err = {name: 'RAIN AWAY', message: 'SUN DOWN'}
+
+	// Errors constructed with Error class also supported
+	// let err = new Error(messg) // equivalent to {name: 'Error', message: 'myMessage}
+
+	// We can send custom HTTP status code like that
+	// let err = {name: 'RAIN AWAY', message: 'SUN DOWN', status: 401}
 	throw err
 }
 
