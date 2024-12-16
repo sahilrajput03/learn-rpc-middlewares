@@ -20,7 +20,6 @@ FYI: proxy works in browser and nodejs
 
 ```js
 const target = {}
-
 const handler = {
 	get(target, prop, receiver) {
 		return () => console.log('fun?:', prop)
@@ -30,8 +29,8 @@ const handler = {
 const rpc = new Proxy(target, handler)
 
 rpc.a()
-// VM583:5 fun?: a
+// fun?: a
 
 rpc.b()
-// VM583:5 fun?: b
+// fun?: b
 ```
