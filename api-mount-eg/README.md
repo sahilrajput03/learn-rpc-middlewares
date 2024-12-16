@@ -21,13 +21,13 @@ FYI: proxy works in browser and nodejs
 ```js
 const target = {}
 
-const handler3 = {
+const handler = {
 	get(target, prop, receiver) {
 		return () => console.log('fun?:', prop)
 	},
 }
 
-const rpc = new Proxy(target, handler3)
+const rpc = new Proxy(target, handler)
 
 rpc.a()
 // VM583:5 fun?: a
